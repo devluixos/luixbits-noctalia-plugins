@@ -1,0 +1,39 @@
+{
+  "id": "casio-deck",
+  "name": "Casio Deck",
+  "version": "0.1.0",
+  "minNoctaliaVersion": "4.4.3",
+  "author": "LuixBits",
+  "license": "MIT",
+  "repository": "https://github.com/devluixos/luixbits-noctalia-plugins",
+  "description": "Temporary QML panel UI for building Casio Deck interactions before Noctalia v5 exposes plugin panels.",
+  "tags": [
+    "Input",
+    "Bluetooth",
+    "Wayland"
+  ],
+  "entryPoints": {
+    "main": "Main.qml",
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "helperCommand": "/home/luiz/projects/noctalia-plugins/scripts/run-abl100-helper.sh --model abl100we --loop",
+      "watchModel": "casio_abl100we_3565",
+      "notifyOnPress": true,
+      "buttonACommand": "",
+      "buttonBCommand": "",
+      "buttonCCommand": "",
+      "buttonDCommand": "",
+      "lowerLeftCommand": "",
+      "lowerRightCommand": "",
+      "timeplaceCommand": "",
+      "finderCommand": ""
+    }
+  }
+}

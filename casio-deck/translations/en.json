@@ -1,29 +1,61 @@
 {
   "title": "Casio Deck",
-  "settings": {
-    "notify_on_press": {
-      "label": "Notify on press",
-      "description": "Show a desktop notification when a watch button event is received."
-    },
-    "helper_command": {
-      "label": "Helper command",
-      "description": "Future command used to stream watch button events into the bridge service."
-    },
-    "label": {
-      "label": "Label",
-      "description": "Text shown next to the watch glyph in the bar."
-    },
-    "show_label": {
-      "label": "Show label",
-      "description": "Show text next to the watch glyph."
-    },
-    "show_press_count": {
-      "label": "Show press count",
-      "description": "Append the number of received button presses to the bar label."
-    },
-    "hide_disconnected": {
-      "label": "Hide while disconnected",
-      "description": "Hide the bar widget until the bridge reports a connected watch."
-    }
-  }
+  "settings.notify_on_press.label": "Notify on press",
+  "settings.notify_on_press.description": "Show a desktop notification when a watch button event is received.",
+  "settings.helper_command.label": "Helper command",
+  "settings.helper_command.description": "Command that streams normalized watch button events into the bridge service.",
+  "settings.scan_command.label": "Scan command",
+  "settings.scan_command.description": "Optional command the dashboard Scan button runs. It should emit scan lines, usually the helper with --scan-only.",
+  "settings.watch_model.label": "Watch model",
+  "settings.watch_model.description": "Select the trigger vocabulary the bridge should expect from the helper.",
+  "settings.trigger_action_map.label": "Advanced trigger action map",
+  "settings.trigger_action_map.description": "Optional newline or semicolon separated mappings such as lower_right=preset:media_play_pause or finder=command:notify-send Casio.",
+  "settings.youtube_channel_url.label": "YouTube channel URL",
+  "settings.youtube_channel_url.description": "LuixBits channel URL shown in the About tab.",
+  "settings.explanation_video_url.label": "Explanation video URL",
+  "settings.explanation_video_url.description": "Optional future video URL shown in the About tab.",
+  "settings.button_a_preset.label": "Button A preset",
+  "settings.button_a_preset.description": "Preset action to run when button A is pressed. Custom command settings still work as fallback.",
+  "settings.button_a_command.label": "Button A command",
+  "settings.button_a_command.description": "Shell command to run when button A is pressed. Leave empty to only record the press.",
+  "settings.button_b_preset.label": "Button B preset",
+  "settings.button_b_preset.description": "Preset action to run when button B is pressed. Custom command settings still work as fallback.",
+  "settings.button_b_command.label": "Button B command",
+  "settings.button_b_command.description": "Shell command to run when button B is pressed. Leave empty to only record the press.",
+  "settings.button_c_preset.label": "Button C preset",
+  "settings.button_c_preset.description": "Preset action to run when button C is pressed. Custom command settings still work as fallback.",
+  "settings.button_c_command.label": "Button C command",
+  "settings.button_c_command.description": "Shell command to run when button C is pressed. Leave empty to only record the press.",
+  "settings.button_d_preset.label": "Button D preset",
+  "settings.button_d_preset.description": "Preset action to run when button D is pressed. Custom command settings still work as fallback.",
+  "settings.button_d_command.label": "Button D command",
+  "settings.button_d_command.description": "Shell command to run when button D is pressed. Leave empty to only record the press.",
+  "settings.lower_left_preset.label": "Lower-left preset",
+  "settings.lower_left_preset.description": "Preset action to run when the helper reports the watch lower-left trigger.",
+  "settings.lower_left_command.label": "Lower-left command",
+  "settings.lower_left_command.description": "Shell command to run when the helper reports the watch lower-left trigger.",
+  "settings.lower_right_preset.label": "Lower-right preset",
+  "settings.lower_right_preset.description": "Preset action to run when the helper reports the watch lower-right trigger.",
+  "settings.lower_right_command.label": "Lower-right command",
+  "settings.lower_right_command.description": "Shell command to run when the helper reports the watch lower-right trigger.",
+  "settings.timeplace_preset.label": "TIME&PLACE preset",
+  "settings.timeplace_preset.description": "Preset action to run when the helper reports the ABL-100WE TIME&PLACE trigger.",
+  "settings.timeplace_command.label": "TIME&PLACE command",
+  "settings.timeplace_command.description": "Shell command to run when the helper reports the ABL-100WE TIME&PLACE trigger.",
+  "settings.finder_preset.label": "Finder preset",
+  "settings.finder_preset.description": "Preset action to run when the helper reports the watch finder trigger.",
+  "settings.finder_command.label": "Finder command",
+  "settings.finder_command.description": "Shell command to run when the helper reports the watch finder trigger.",
+  "settings.unknown_preset.label": "Unknown trigger preset",
+  "settings.unknown_preset.description": "Preset action to run when the helper can detect a watch event but cannot identify the exact trigger.",
+  "settings.unknown_command.label": "Unknown trigger command",
+  "settings.unknown_command.description": "Shell command to run when the helper reports an unknown trigger.",
+  "settings.label.label": "Label",
+  "settings.label.description": "Text shown next to the watch glyph in the bar.",
+  "settings.show_label.label": "Show label",
+  "settings.show_label.description": "Show text next to the watch glyph.",
+  "settings.show_press_count.label": "Show press count",
+  "settings.show_press_count.description": "Append the number of received button presses to the bar label.",
+  "settings.hide_disconnected.label": "Hide while disconnected",
+  "settings.hide_disconnected.description": "Hide the bar widget until the bridge reports a connected watch."
 }

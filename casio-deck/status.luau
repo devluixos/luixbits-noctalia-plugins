@@ -1,6 +1,9 @@
 -- Casio Deck bar widget.
 --
--- Left click sends mock button A, right click sends B, middle click sends C.
+-- Left click is reserved for the future plugin dropdown panel. Noctalia v5's
+-- Luau plugin API does not currently expose plugin-owned bar panels.
+-- Right click reports the current bridge status. Middle click sends the first
+-- trigger for quick local testing.
 -- IPC can also target this widget and will forward commands to the bridge
 -- service through noctalia.state.
 
@@ -13,9 +16,23 @@ local current = {
   connected = false,
   mode = "mock",
   helper_configured = false,
+  helper_ready = false,
+  helper_started = false,
+  helper_name = "",
+  helper_version = "",
+  helper_model = "",
+  helper_capabilities = "",
+  watch_model = "generic_abcd",
+  watch_model_name = "Generic A/B/C/D",
+  watch_model_support = "supported",
+  watch_name = "",
+  watch_address = "",
+  last_trigger = "",
   last_button = "",
   last_action = "idle",
+  last_action_detail = "",
   last_source = "",
+  last_error = "",
   press_count = 0,
   heartbeat = 0,
   updated_at = "",
@@ -35,11 +52,29 @@ local function textForStatus()
     return ""
   end
 
-  if current.connected and current.last_button ~= "" then
+  local trigger = current.last_trigger ~= "" and current.last_trigger or current.last_button
+
+  if current.connected and trigger ~= "" then
     if showPressCount then
-      return `{label} {current.last_button} #{current.press_count}`
+      return `{label} {trigger} #{current.press_count}`
     end
-    return `{label} {current.last_button}`
+    return `{label} {trigger}`
+  end
+
+  if current.connected then
+    return `{label} on`
+  end
+
+  if current.last_error ~= "" then
+    return `{label} error`
+  end
+
+  if current.helper_ready then
+    return `{label} ready`
+  end
+
+  if current.helper_configured then
+    return `{label} wait`
   end
 
   return label
@@ -66,9 +101,23 @@ local function render()
   barWidget.setTooltip({
     { key = "State", value = current.connected and "connected" or "disconnected" },
     { key = "Mode", value = current.mode },
+    { key = "Helper", value = current.helper_name ~= "" and current.helper_name or "-" },
+    { key = "Helper ready", value = current.helper_ready and "yes" or "no" },
+    { key = "Helper started", value = current.helper_started and "yes" or "no" },
+    { key = "Helper version", value = current.helper_version ~= "" and current.helper_version or "-" },
+    { key = "Helper model", value = current.helper_model ~= "" and current.helper_model or "-" },
+    { key = "Helper caps", value = current.helper_capabilities ~= "" and current.helper_capabilities or "-" },
+    { key = "Watch model", value = current.watch_model ~= "" and current.watch_model or "-" },
+    { key = "Watch name/model", value = current.watch_model_name ~= "" and current.watch_model_name or "-" },
+    { key = "Support", value = current.watch_model_support ~= "" and current.watch_model_support or "-" },
+    { key = "Watch name", value = current.watch_name ~= "" and current.watch_name or "-" },
+    { key = "Watch address", value = current.watch_address ~= "" and current.watch_address or "-" },
+    { key = "Last trigger", value = current.last_trigger ~= "" and current.last_trigger or "-" },
     { key = "Last button", value = current.last_button ~= "" and current.last_button or "-" },
     { key = "Action", value = current.last_action },
+    { key = "Action detail", value = current.last_action_detail ~= "" and current.last_action_detail or "-" },
     { key = "Source", value = current.last_source ~= "" and current.last_source or "-" },
+    { key = "Last error", value = current.last_error ~= "" and current.last_error or "-" },
     { key = "Presses", value = tostring(current.press_count) },
     { key = "Updated", value = current.updated_at ~= "" and current.updated_at or "-" },
   })
@@ -79,9 +128,23 @@ local function applyStatus(status)
     current.connected = status.connected == true
     current.mode = status.mode or "mock"
     current.helper_configured = status.helper_configured == true
+    current.helper_ready = status.helper_ready == true
+    current.helper_started = status.helper_started == true
+    current.helper_name = status.helper_name or ""
+    current.helper_version = status.helper_version or ""
+    current.helper_model = status.helper_model or ""
+    current.helper_capabilities = status.helper_capabilities or ""
+    current.watch_model = status.watch_model or "generic_abcd"
+    current.watch_model_name = status.watch_model_name or current.watch_model
+    current.watch_model_support = status.watch_model_support or ""
+    current.watch_name = status.watch_name or ""
+    current.watch_address = status.watch_address or ""
+    current.last_trigger = status.last_trigger or ""
     current.last_button = status.last_button or ""
     current.last_action = status.last_action or "idle"
+    current.last_action_detail = status.last_action_detail or ""
     current.last_source = status.last_source or ""
+    current.last_error = status.last_error or ""
     current.press_count = status.press_count or 0
     current.heartbeat = status.heartbeat or 0
     current.updated_at = status.updated_at or ""
@@ -90,15 +153,19 @@ local function applyStatus(status)
 end
 
 function onClick()
-  send("press", "A")
+  noctalia.notifyError("Casio Deck", "Bar dropdown panels are not exposed to v5 plugins yet. Use the Casio Deck desktop widget for setup.")
 end
 
 function onRightClick()
-  send("press", "B")
+  send("status")
 end
 
 function onMiddleClick()
-  send("press", "C")
+  if current.watch_model == "casio_abl100we_3565" then
+    send("press", "lower_right")
+  else
+    send("press", "A")
+  end
 end
 
 function onIpc(event, payload)

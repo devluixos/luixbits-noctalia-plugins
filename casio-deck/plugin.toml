@@ -23,6 +23,273 @@ description_key = "settings.helper_command.description"
 default = ""
 advanced = true
 
+[[setting]]
+key = "scan_command"
+type = "string"
+label_key = "settings.scan_command.label"
+description_key = "settings.scan_command.description"
+default = ""
+advanced = true
+
+[[setting]]
+key = "watch_model"
+type = "select"
+label_key = "settings.watch_model.label"
+description_key = "settings.watch_model.description"
+default = "generic_abcd"
+options = [
+  { value = "generic_abcd", label = "Generic A/B/C/D" },
+  { value = "casio_abl100we_3565", label = "Casio ABL-100WE (module 3565)" },
+  { value = "future_casio_ble", label = "Other Casio Bluetooth watch (unsupported)" },
+]
+
+[[setting]]
+key = "trigger_action_map"
+type = "string"
+label_key = "settings.trigger_action_map.label"
+description_key = "settings.trigger_action_map.description"
+default = ""
+advanced = true
+
+[[setting]]
+key = "youtube_channel_url"
+type = "string"
+label_key = "settings.youtube_channel_url.label"
+description_key = "settings.youtube_channel_url.description"
+default = "https://www.youtube.com/@LuixBits"
+
+[[setting]]
+key = "explanation_video_url"
+type = "string"
+label_key = "settings.explanation_video_url.label"
+description_key = "settings.explanation_video_url.description"
+default = ""
+
+[[setting]]
+key = "button_a_preset"
+type = "select"
+label_key = "settings.button_a_preset.label"
+description_key = "settings.button_a_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "button_a_command"
+type = "string"
+label_key = "settings.button_a_command.label"
+description_key = "settings.button_a_command.description"
+default = ""
+
+[[setting]]
+key = "button_b_preset"
+type = "select"
+label_key = "settings.button_b_preset.label"
+description_key = "settings.button_b_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "button_b_command"
+type = "string"
+label_key = "settings.button_b_command.label"
+description_key = "settings.button_b_command.description"
+default = ""
+
+[[setting]]
+key = "button_c_preset"
+type = "select"
+label_key = "settings.button_c_preset.label"
+description_key = "settings.button_c_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "button_c_command"
+type = "string"
+label_key = "settings.button_c_command.label"
+description_key = "settings.button_c_command.description"
+default = ""
+
+[[setting]]
+key = "button_d_preset"
+type = "select"
+label_key = "settings.button_d_preset.label"
+description_key = "settings.button_d_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "button_d_command"
+type = "string"
+label_key = "settings.button_d_command.label"
+description_key = "settings.button_d_command.description"
+default = ""
+
+[[setting]]
+key = "lower_left_preset"
+type = "select"
+label_key = "settings.lower_left_preset.label"
+description_key = "settings.lower_left_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "lower_left_command"
+type = "string"
+label_key = "settings.lower_left_command.label"
+description_key = "settings.lower_left_command.description"
+default = ""
+
+[[setting]]
+key = "lower_right_preset"
+type = "select"
+label_key = "settings.lower_right_preset.label"
+description_key = "settings.lower_right_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "lower_right_command"
+type = "string"
+label_key = "settings.lower_right_command.label"
+description_key = "settings.lower_right_command.description"
+default = ""
+
+[[setting]]
+key = "timeplace_preset"
+type = "select"
+label_key = "settings.timeplace_preset.label"
+description_key = "settings.timeplace_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "timeplace_command"
+type = "string"
+label_key = "settings.timeplace_command.label"
+description_key = "settings.timeplace_command.description"
+default = ""
+
+[[setting]]
+key = "finder_preset"
+type = "select"
+label_key = "settings.finder_preset.label"
+description_key = "settings.finder_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "finder_command"
+type = "string"
+label_key = "settings.finder_command.label"
+description_key = "settings.finder_command.description"
+default = ""
+
+[[setting]]
+key = "unknown_preset"
+type = "select"
+label_key = "settings.unknown_preset.label"
+description_key = "settings.unknown_preset.description"
+default = "none"
+options = [
+  { value = "none", label = "Do nothing" },
+  { value = "notification_test", label = "Notification test" },
+  { value = "media_play_pause", label = "Media play-pause" },
+  { value = "volume_up", label = "Volume up" },
+  { value = "volume_down", label = "Volume down" },
+  { value = "screenshot_region", label = "Screenshot region" },
+  { value = "clipboard", label = "Clipboard" },
+  { value = "launcher", label = "Launcher" },
+  { value = "lock", label = "Lock screen" },
+]
+
+[[setting]]
+key = "unknown_command"
+type = "string"
+label_key = "settings.unknown_command.label"
+description_key = "settings.unknown_command.description"
+default = ""
+
 [[service]]
 id = "bridge"
 entry = "bridge.luau"
@@ -62,3 +329,7 @@ entry = "status.luau"
 [[shortcut]]
 id = "toggle"
 entry = "shortcut.luau"
+
+[[desktop_widget]]
+id = "dashboard"
+entry = "dashboard.luau"

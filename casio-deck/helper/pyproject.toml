@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "casio-deck-helper"
+version = "0.1.0"
+description = "Experimental Casio Deck helper with model adapters for Bluetooth watch testing."
+requires-python = ">=3.12"
+dependencies = [
+  "bleak>=1.0.1",
+  "gshock-api>=2.0.38",
+  "pytz",
+  "requests",
+]
+
+[project.scripts]
+casio-deck-helper = "casio_deck_helper.cli:main"
+casio-deck-abl100-helper = "casio_deck_helper.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

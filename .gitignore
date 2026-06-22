@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+*.tmp
+
+# Local editor/tool state
+.direnv/
+.env
+.env.*
+
+# Noctalia runtime state does not belong in the plugin source repo.
+state/
+cache/

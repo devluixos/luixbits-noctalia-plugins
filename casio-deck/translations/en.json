@@ -1,0 +1,29 @@
+{
+  "title": "Casio Deck",
+  "settings": {
+    "notify_on_press": {
+      "label": "Notify on press",
+      "description": "Show a desktop notification when a watch button event is received."
+    },
+    "helper_command": {
+      "label": "Helper command",
+      "description": "Future command used to stream watch button events into the bridge service."
+    },
+    "label": {
+      "label": "Label",
+      "description": "Text shown next to the watch glyph in the bar."
+    },
+    "show_label": {
+      "label": "Show label",
+      "description": "Show text next to the watch glyph."
+    },
+    "show_press_count": {
+      "label": "Show press count",
+      "description": "Append the number of received button presses to the bar label."
+    },
+    "hide_disconnected": {
+      "label": "Hide while disconnected",
+      "description": "Hide the bar widget until the bridge reports a connected watch."
+    }
+  }
+}

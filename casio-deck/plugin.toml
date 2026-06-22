@@ -1,0 +1,64 @@
+id = "luixbits/casio-deck"
+name = "Casio Deck"
+version = "0.1.0"
+min_noctalia = "5.0.0"
+author = "LuixBits"
+license = "MIT"
+tags = ["watch", "controller", "stream-deck", "casio"]
+icon = "device-watch"
+description = "Foundation for using a Casio watch as a stream-deck-like Noctalia controller."
+
+[[setting]]
+key = "notify_on_press"
+type = "bool"
+label_key = "settings.notify_on_press.label"
+description_key = "settings.notify_on_press.description"
+default = true
+
+[[setting]]
+key = "helper_command"
+type = "string"
+label_key = "settings.helper_command.label"
+description_key = "settings.helper_command.description"
+default = ""
+advanced = true
+
+[[service]]
+id = "bridge"
+entry = "bridge.luau"
+
+[[widget]]
+id = "status"
+entry = "status.luau"
+
+  [[widget.setting]]
+  key = "label"
+  type = "string"
+  label_key = "settings.label.label"
+  description_key = "settings.label.description"
+  default = "Casio"
+
+  [[widget.setting]]
+  key = "show_label"
+  type = "bool"
+  label_key = "settings.show_label.label"
+  description_key = "settings.show_label.description"
+  default = true
+
+  [[widget.setting]]
+  key = "show_press_count"
+  type = "bool"
+  label_key = "settings.show_press_count.label"
+  description_key = "settings.show_press_count.description"
+  default = true
+
+  [[widget.setting]]
+  key = "hide_disconnected"
+  type = "bool"
+  label_key = "settings.hide_disconnected.label"
+  description_key = "settings.hide_disconnected.description"
+  default = false
+
+[[shortcut]]
+id = "toggle"
+entry = "shortcut.luau"

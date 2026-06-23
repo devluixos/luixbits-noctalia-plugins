@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Experimental Casio Deck helper with model adapters for Bluetooth watch testing."
 requires-python = ">=3.12"
 dependencies = [
-  "bleak>=1.0.1",
+  "bleak>=0.22,<1.0",
   "gshock-api>=2.0.38",
   "pytz",
   "requests",

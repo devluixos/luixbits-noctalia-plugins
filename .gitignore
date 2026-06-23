@@ -1,11 +1,17 @@
 .DS_Store
 *.log
 *.tmp
+*.cfa
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
 
 # Local editor/tool state
 .direnv/
 .env
 .env.*
+captures/
 
 # Noctalia runtime state does not belong in the plugin source repo.
 state/

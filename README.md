@@ -21,7 +21,7 @@ files. The current v5 API does not expose the large Clipboard/System-style panel
 surface yet, so Casio Deck uses a temporary `[[desktop_widget]]` setup UI with
 tabs for Overview, Connection, Functions, and About.
 
-The older `casio-deck/qml/` prototype is kept only as a local experiment. The
+The older QML prototype is archived under `archive/casio-deck-qml/`. The
 shareable plugin path is the v5 `plugin.toml` plus Luau entries.
 
 When Noctalia exposes plugin-owned bar dropdown panels, the same tab structure
@@ -49,19 +49,21 @@ expects a source root containing one or more plugin directories.
 ```text
 .
 ├── catalog.toml
+├── archive/
+│   └── casio-deck-qml/
 ├── docs/
 ├── scripts/
+│   ├── dev/
+│   └── helper/
 └── casio-deck/
     ├── plugin.toml
-    ├── bridge.luau
+    ├── entries/
+    │   ├── service/
+    │   ├── widgets/
+    │   └── shortcuts/
+    ├── data/
     ├── helper/
-    ├── examples/
-    ├── dashboard.luau
-    ├── qml/
-    ├── status.luau
-    ├── shortcut.luau
-    ├── translations/
-    └── assets/
+    └── translations/
 ```
 
 ## Development
@@ -75,11 +77,30 @@ Validate the source structure:
 Smoke-test the Casio Deck service after Noctalia has loaded and enabled it:
 
 ```sh
-./scripts/smoke-casio-deck.sh
+./scripts/dev/smoke-casio-deck.sh abl100we
+```
+
+The smoke script is safe by default and only dispatches model/status IPC. To
+also send real press actions for the confirmed ABL triggers, opt in explicitly:
+
+```sh
+CASIO_DECK_SMOKE_RUN_ACTIONS=1 ./scripts/dev/smoke-casio-deck.sh abl100we
 ```
 
 Run the experimental ABL-100WE helper manually:
 
 ```sh
-./scripts/run-abl100-helper.sh --model abl100we --loop --debug
+./scripts/helper/run-abl100-helper.sh --model abl100we --session-mode action --once --debug
+```
+
+Run the background listener used by the plugin:
+
+```sh
+./scripts/helper/run-abl100-helper.sh --model abl100we --listener --app-info-profile smart-sync --scan-timeout 60 --connect-timeout 25 --app-init-timeout 25 --reconnect-delay 2 --debug
+```
+
+Capture a full ABL-100WE test session with helper logs and optional `btmon`:
+
+```sh
+./scripts/dev/capture-abl100-session.sh --seconds 180
 ```

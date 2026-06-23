@@ -1,0 +1,32 @@
+# Casio Deck action and trigger registry.
+#
+# Format:
+# preset_order|preset_id,preset_id
+# preset|id|label=Name|short_label=Short|command=shell command|notify=true|special=name
+# trigger_order|trigger_id,trigger_id
+# trigger|id|label=Name|test_label=Name|support=text|command=config_key|preset=config_key|on_click=callback
+
+preset_order|none,notification_test,teams_accept_audio,teams_accept_video,teams_toggle_mute,teams_decline_call,teams_leave_call,audio_mute_toggle,mic_mute_toggle,media_play_pause,volume_up,volume_down,screenshot_region,clipboard,launcher,lock
+
+preset|none|label=Do nothing|short_label=Do nothing|command=
+preset|notification_test|label=Notification test|short_label=Notification|command=|notify=true
+preset|media_play_pause|label=Media play-pause|short_label=Media play|command=noctalia msg media toggle
+preset|volume_up|label=Volume up|short_label=Volume up|command=noctalia msg volume-up
+preset|volume_down|label=Volume down|short_label=Volume down|command=noctalia msg volume-down
+preset|audio_mute_toggle|label=Toggle output mute|short_label=Output mute|command=wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+preset|mic_mute_toggle|label=Toggle microphone mute|short_label=Mic mute|command=wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+preset|screenshot_region|label=Screenshot region|short_label=Screenshot|command=noctalia msg screenshot-region
+preset|clipboard|label=Clipboard|short_label=Clipboard|command=noctalia msg panel-open clipboard
+preset|launcher|label=Launcher|short_label=Launcher|command=noctalia msg panel-open launcher
+preset|lock|label=Lock screen|short_label=Lock|command=noctalia msg session lock
+preset|teams_accept_audio|label=Teams accept audio call|short_label=Teams accept audio|command=wtype -M ctrl -M shift -k s
+preset|teams_accept_video|label=Teams accept video call|short_label=Teams accept video|command=wtype -M ctrl -M shift -k a
+preset|teams_toggle_mute|label=Teams toggle mute|short_label=Teams mute|command=wtype -M ctrl -M shift -k m
+preset|teams_decline_call|label=Teams decline call|short_label=Teams decline|command=wtype -M ctrl -M shift -k d
+preset|teams_leave_call|label=Teams leave call|short_label=Teams leave|command=wtype -M ctrl -M shift -k h
+
+trigger_order|lower_right,finder,lower_left
+
+trigger|lower_left|label=Long lower left|test_label=Long lower left|support=lock screen default|command=lower_left_command|preset=lower_left_preset|on_click=pressLowerLeft
+trigger|lower_right|label=Short lower right|test_label=Short lower right|support=accept Teams call default|command=lower_right_command|preset=lower_right_preset|on_click=pressLowerRight
+trigger|finder|label=Long lower right|test_label=Long lower right|support=audio mute default|command=finder_command|preset=finder_preset|on_click=pressFinder

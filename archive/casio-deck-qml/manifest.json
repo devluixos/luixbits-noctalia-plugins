@@ -23,7 +23,7 @@
   },
   "metadata": {
     "defaultSettings": {
-      "helperCommand": "/home/luiz/projects/noctalia-plugins/scripts/run-abl100-helper.sh --model abl100we --loop",
+      "helperCommand": "/home/luiz/projects/noctalia-plugins/scripts/helper/run-abl100-helper.sh --model abl100we --loop",
       "watchModel": "casio_abl100we_3565",
       "notifyOnPress": true,
       "buttonACommand": "",

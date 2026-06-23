@@ -1,43 +1,23 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from .adapters.abl100.model import MODEL as ABL100WE
+from .model_types import CasioModelAdapter
 
-
-@dataclass(frozen=True)
-class CasioModelAdapter:
-    id: str
-    aliases: tuple[str, ...]
-    display_name: str
-    module_number: str
-    support: str
-    scan_keywords: tuple[str, ...]
-    triggers: tuple[str, ...]
-    capabilities: tuple[str, ...]
-
-    def matches_name(self, name: str) -> bool:
-        upper = (name or "").upper()
-        if not upper:
-            return False
-        return any(keyword in upper for keyword in self.scan_keywords)
-
-
-ABL100WE = CasioModelAdapter(
-    id="casio_abl100we_3565",
-    aliases=("abl100we", "abl100", "casio_abl100we", "casio_abl100we_3565", "module_3565"),
-    display_name="Casio ABL-100WE-1A",
-    module_number="3565",
-    support="experimental",
-    scan_keywords=("ABL", "ABL-100", "3565", "CASIO"),
-    triggers=("lower_left", "lower_right", "timeplace", "finder", "unknown"),
-    capabilities=("ble_connection", "button_events", "timeplace", "finder"),
+# Helper model registry.
+#
+# Add future watch adapters by importing their MODEL here and appending it to
+# REGISTERED_MODELS. The Noctalia UI model list is separately declared in
+# casio-deck/data/models.deck.
+REGISTERED_MODELS: tuple[CasioModelAdapter, ...] = (
+    ABL100WE,
 )
 
 MODELS: dict[str, CasioModelAdapter] = {
-    ABL100WE.id: ABL100WE,
+    model.id: model for model in REGISTERED_MODELS
 }
 
 ALIASES: dict[str, str] = {
-    alias: model.id for model in MODELS.values() for alias in model.aliases
+    alias: model.id for model in REGISTERED_MODELS for alias in model.aliases
 }
 
 

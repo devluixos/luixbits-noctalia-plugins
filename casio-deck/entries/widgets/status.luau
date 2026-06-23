@@ -14,7 +14,7 @@ local hideDisconnected = barWidget.getConfig("hide_disconnected") == true
 
 local current = {
   connected = false,
-  mode = "mock",
+  connection_state = "manual",
   helper_configured = false,
   helper_ready = false,
   helper_started = false,
@@ -22,8 +22,10 @@ local current = {
   helper_version = "",
   helper_model = "",
   helper_capabilities = "",
-  watch_model = "generic_abcd",
-  watch_model_name = "Generic A/B/C/D",
+  paired = false,
+  paired_at = "",
+  watch_model = "casio_abl100we_3565",
+  watch_model_name = "Casio ABL-100WE-1A",
   watch_model_support = "supported",
   watch_name = "",
   watch_address = "",
@@ -34,7 +36,6 @@ local current = {
   last_source = "",
   last_error = "",
   press_count = 0,
-  heartbeat = 0,
   updated_at = "",
 }
 
@@ -65,8 +66,20 @@ local function textForStatus()
     return `{label} on`
   end
 
+  if current.helper_started and current.connection_state ~= "" and current.connection_state ~= "manual" then
+    return `{label} {current.connection_state}`
+  end
+
+  if current.paired then
+    return `{label} paired`
+  end
+
   if current.last_error ~= "" then
     return `{label} error`
+  end
+
+  if current.connection_state ~= "" and current.connection_state ~= "manual" then
+    return `{label} {current.connection_state}`
   end
 
   if current.helper_ready then
@@ -81,12 +94,16 @@ local function textForStatus()
 end
 
 local function render()
-  barWidget.setVisible(current.connected or not hideDisconnected)
+  barWidget.setVisible(current.connected or current.paired or not hideDisconnected)
 
   if current.connected then
     barWidget.setGlyph("device-watch-check")
     barWidget.setGlyphColor("primary")
     barWidget.setColor("primary")
+  elseif current.paired then
+    barWidget.setGlyph("device-watch")
+    barWidget.setGlyphColor("secondary")
+    barWidget.setColor("secondary")
   elseif current.helper_configured then
     barWidget.setGlyph("device-watch-code")
     barWidget.setGlyphColor("secondary")
@@ -99,8 +116,10 @@ local function render()
 
   barWidget.setText(textForStatus())
   barWidget.setTooltip({
-    { key = "State", value = current.connected and "connected" or "disconnected" },
-    { key = "Mode", value = current.mode },
+    { key = "State", value = current.connection_state ~= "" and current.connection_state or (current.connected and "connected" or "disconnected") },
+    { key = "Live BLE session", value = current.connected and "connected now" or "not connected now" },
+    { key = "Bond saved", value = current.paired and "yes" or "no" },
+    { key = "Bond time", value = current.paired_at ~= "" and current.paired_at or "-" },
     { key = "Helper", value = current.helper_name ~= "" and current.helper_name or "-" },
     { key = "Helper ready", value = current.helper_ready and "yes" or "no" },
     { key = "Helper started", value = current.helper_started and "yes" or "no" },
@@ -126,7 +145,7 @@ end
 local function applyStatus(status)
   if type(status) == "table" then
     current.connected = status.connected == true
-    current.mode = status.mode or "mock"
+    current.connection_state = status.connection_state or (current.connected and "connected" or "offline")
     current.helper_configured = status.helper_configured == true
     current.helper_ready = status.helper_ready == true
     current.helper_started = status.helper_started == true
@@ -134,7 +153,9 @@ local function applyStatus(status)
     current.helper_version = status.helper_version or ""
     current.helper_model = status.helper_model or ""
     current.helper_capabilities = status.helper_capabilities or ""
-    current.watch_model = status.watch_model or "generic_abcd"
+    current.paired = status.paired == true
+    current.paired_at = status.paired_at or ""
+    current.watch_model = status.watch_model or "casio_abl100we_3565"
     current.watch_model_name = status.watch_model_name or current.watch_model
     current.watch_model_support = status.watch_model_support or ""
     current.watch_name = status.watch_name or ""
@@ -146,7 +167,6 @@ local function applyStatus(status)
     current.last_source = status.last_source or ""
     current.last_error = status.last_error or ""
     current.press_count = status.press_count or 0
-    current.heartbeat = status.heartbeat or 0
     current.updated_at = status.updated_at or ""
   end
   render()
@@ -161,11 +181,7 @@ function onRightClick()
 end
 
 function onMiddleClick()
-  if current.watch_model == "casio_abl100we_3565" then
-    send("press", "lower_right")
-  else
-    send("press", "A")
-  end
+  send("press", "lower_right")
 end
 
 function onIpc(event, payload)

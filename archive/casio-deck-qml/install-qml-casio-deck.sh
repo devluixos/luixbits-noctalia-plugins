@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-source_dir="$repo_root/casio-deck/qml"
+source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 target_dir="${XDG_CONFIG_HOME:-$HOME/.config}/noctalia/plugins/casio-deck"
 
 if [[ ! -d "$source_dir" ]]; then
